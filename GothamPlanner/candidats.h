@@ -1,7 +1,7 @@
 ﻿#pragma once
-class candidats1 {
+class candidats {
 public:
-	candidats1(int n = 0);
+	candidats(int n = 0);
 	int actual() const;
 	bool esFi() const;
 	void seguent();

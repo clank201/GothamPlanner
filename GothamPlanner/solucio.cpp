@@ -1,8 +1,8 @@
-﻿#include "solucio1.h"
+﻿#include "solucio.h"
 #include <iostream>
 #include <string>
 
-solucio1::solucio1() {
+solucio::solucio() {
 	tamany = 0;
 	distMax = 0;
 	perillMax = 0;
@@ -10,7 +10,7 @@ solucio1::solucio1() {
 	perillAcum = 0;
 }
 
-solucio1::solucio1(GrafEtiquetatVMap* graf, int d, double p, int o, int origen) {
+solucio::solucio(GrafEtiquetatVMap* graf, int d, int o, int origen,double p) {
 	// pre: n>0
 	// pos: solucio preparada per resoldre un problema de mida n
 	tamany = graf->nVertexs();
@@ -24,17 +24,17 @@ solucio1::solucio1(GrafEtiquetatVMap* graf, int d, double p, int o, int origen) 
 	recorregut.push_back(0);
 	recorregut.push_back(origen);
 }
-solucio1::solucio1(const solucio1 &o) {
+solucio::solucio(const solucio &o) {
 	// pre: cert (error: bad alloc)
 	// pos: es fa un duplicat de l’objecte o
 	copia(o);
 }
-solucio1::~solucio1() {
+solucio::~solucio() {
 	// pre: cert
 	// pos: s’allibera la memòria de l’objecte
 	allibera();
 }
-solucio1 & solucio1::operator=(const solucio1 &o) {
+solucio & solucio::operator=(const solucio &o) {
 	// pre: cert (error: bad alloc)
 	// pos: es fa un duplicat de l’objecte o i es retorna
 	if (this != &o) {
@@ -43,12 +43,12 @@ solucio1 & solucio1::operator=(const solucio1 &o) {
 	}
 	return *this;
 }
-candidats1 solucio1::inicialitzarCandidats() const {
+candidats solucio::inicialitzarCandidats() const {
 	// pre: cert
 	// pos: retorna els candidats del nivell actual
-	return candidats1(tamany + 1);
+	return candidats(tamany + 1);
 }
-bool solucio1::acceptable(const candidats1 &iCan) const {
+bool solucio::acceptable(const candidats &iCan) const {
 	// pre: cert
 	// pos: retorna cert si el candidat es pot afegir a la solució
 	int f = iCan.actual();
@@ -62,7 +62,7 @@ bool solucio1::acceptable(const candidats1 &iCan) const {
 	}
 	return false;
 }
-void solucio1::anotar(const candidats1 &iCan) {
+void solucio::anotar(const candidats &iCan) {
 	// pre: iCan és acceptable
 	// pos: afegeix iCan a la solucio
 	int f = iCan.actual();
@@ -72,7 +72,7 @@ void solucio1::anotar(const candidats1 &iCan) {
 	else perillAcum = 1 - ((1 - perillAcum) * (1 - e.perill));
 	recorregut.push_back(f);
 }
-void solucio1::desanotar(const candidats1 &iCan) {
+void solucio::desanotar(const candidats &iCan) {
 	// pre: iCan és el darrer candidat anotat
 	// pos: es treu iCan de la solucio (darrer candidat anotat)
 	int f = iCan.actual();
@@ -82,15 +82,14 @@ void solucio1::desanotar(const candidats1 &iCan) {
 	if (recorregut.size() == 2)perillAcum = 0;
 	else perillAcum = 1 - ((1 - perillAcum) / (1 - e.perill));
 }
-bool solucio1::completa() const {
+bool solucio::completa() const {
 	// pre: cert
 	// pos: retorna cert si la solució ja és completa
 	return recorregut.back() == objectiu;
 }
 
-void solucio1::mostrar() const {
-	cout << "Cerquem un cami amb probabilitat atemptat en un tram < que cert valor" << endl << "== == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == =" << endl;
-	cout << "Per anar de " << g->getNomVertex(recorregut[1]) << " a " << g->getNomVertex(recorregut.back()) << " tenim el següent camí: " << endl;
+void solucio::mostrar() const {
+cout << "Per anar de " << g->getNomVertex(recorregut[1]) << " a " <<g->getNomVertex(objectiu) << " tenim el següent camí: " << endl;
 	for (int i = 1; i < recorregut.size(); i++) {
 		cout << g->getNomVertex(recorregut[i]);
 		if (i + 1 < recorregut.size()) cout << "-";
@@ -99,11 +98,15 @@ void solucio1::mostrar() const {
 	cout << "i amb una distància total de " << (float)distAcum / 1000 << " quilòmetres" << endl;
 }
 
-void solucio1::reserva() {
+bool solucio::millorQue(solucio sol){
+	return perillAcum < sol.perillAcum;
+}
+
+void solucio::reserva() {
 	// pre: nReines inicialitzat (error: bad alloc)
 	// pos: es reserva espai per a les diferents taules
 }
-void solucio1::copia(const solucio1 &o) {
+void solucio::copia(const solucio &o) {
 	// pre: cert (error: bad alloc)
 	// post: es fa un duplicat dels atributs (estàtics i dinàmics)
 	recorregut = o.recorregut;
@@ -115,7 +118,7 @@ void solucio1::copia(const solucio1 &o) {
 	objectiu = o.objectiu;
 	g = o.g;
 }
-void solucio1::allibera() {
+void solucio::allibera() {
 	// pre: cert
 	// post: s’allibera la memòria reservada
 }

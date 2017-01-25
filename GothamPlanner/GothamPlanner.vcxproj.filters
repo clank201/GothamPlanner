@@ -21,13 +21,16 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="candidats1.cpp">
+    <ClCompile Include="candidats.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="solucio1.cpp">
+    <ClCompile Include="solucio.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="solucionar1.cpp">
+    <ClCompile Include="solucionarSenzill.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="solucionarOptim.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -35,13 +38,16 @@
     <ClInclude Include="GrafEtiquetatVMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="candidats1.h">
+    <ClInclude Include="candidats.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="solucio1.h">
+    <ClInclude Include="solucio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="solucionar1.h">
+    <ClInclude Include="solucionarSenzill.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="solucionarOptim.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

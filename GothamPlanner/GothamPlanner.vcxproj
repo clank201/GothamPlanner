@@ -142,17 +142,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="candidats1.cpp" />
+    <ClCompile Include="candidats.cpp" />
     <ClCompile Include="GrafEtiquetatVMap.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="solucionar1.cpp" />
-    <ClCompile Include="solucio1.cpp" />
+    <ClCompile Include="solucionarOptim.cpp" />
+    <ClCompile Include="solucionarSenzill.cpp" />
+    <ClCompile Include="solucio.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="candidats1.h" />
+    <ClInclude Include="candidats.h" />
     <ClInclude Include="GrafEtiquetatVMap.h" />
-    <ClInclude Include="solucionar1.h" />
-    <ClInclude Include="solucio1.h" />
+    <ClInclude Include="solucionarOptim.h" />
+    <ClInclude Include="solucionarSenzill.h" />
+    <ClInclude Include="solucio.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

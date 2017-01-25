@@ -1,6 +1,6 @@
-#include "solucionar1.h"
+#include "solucionarSenzill.h"
 
-bool solucionar1::solucionar(const solucio1 &inicial) {
+bool solucionarSenzill::solucionar(const solucio &inicial) {
 	// pre: cert
 	// pos: retorna si ha trobat o no la solucio (i la guarda si l’ha trobada)
 	encertat = false;
@@ -8,17 +8,17 @@ bool solucionar1::solucionar(const solucio1 &inicial) {
 	trobarUnaSolucio();
 	return encertat;
 }
-solucio1 solucionar1::obtenirSolucio() const {
+solucio solucionarSenzill::obtenirSolucio() const {
 	// pre: cal haver exacutat solucionar
 	// pos: retorna una copia de la solucio si s’ha trobat
 	if (!encertat)
 		throw("No s’ha trobat la solució");
 	return sol;
 }
-void solucionar1::trobarUnaSolucio() {
+void solucionarSenzill::trobarUnaSolucio() {
 	// pre: no encertat ^ sol és parcial
 	// pos: no encertat o encertat ^ sol és completa
-	candidats1 iCan = sol.inicialitzarCandidats();
+	candidats iCan = sol.inicialitzarCandidats();
 	while (!iCan.esFi() && !encertat) {
 		if (sol.acceptable(iCan)) {
 			sol.anotar(iCan);

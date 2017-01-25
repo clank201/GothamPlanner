@@ -4,8 +4,9 @@
 #include <iostream>
 #include "GrafEtiquetatVMap.h"
 #include "solucionarMillor.h"
-#include "solucio1.h"
-#include "solucionar1.h"
+#include "solucio.h"
+#include "solucionarSenzill.h"
+#include "solucionarOptim.h"
 
 using namespace std;
 
@@ -19,17 +20,18 @@ void opcio1(char* argv[]) {
 	int distMax = stoi(argv[5]);
 	string filename(argv[6]);
 	GrafEtiquetatVMap graf(filename.c_str(),false);
-	solucio1 sIni(&graf,distMax,perillMax,graf.getNumeroVertex(desti), graf.getNumeroVertex(origen));
-	solucionar1 algBack;
+	solucio sIni(&graf,distMax,graf.getNumeroVertex(desti), graf.getNumeroVertex(origen), perillMax);
+	solucionarSenzill algBack;
 	auto t1 = Clock::now();
 	double segons;
 	bool teSolucio = algBack.solucionar(sIni);
 	if (teSolucio) {
-		solucio1 sol = algBack.obtenirSolucio();
-		sol.mostrar(); // caldria fer el mètode
+		solucio sol = algBack.obtenirSolucio();
+		cout << "Cerquem un cami amb probabilitat atemptat en un tram < que cert valor" << endl << "=====================================================================" << endl;
+		sol.mostrar();
 	}
 	else {
-		cout << "Cerquem un cami amb probabilitat atemptat en un tram < que cert valor" << endl << "== == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == =" << endl;
+		cout << "Cerquem un cami amb probabilitat atemptat en un tram < que cert valor" << endl << "=====================================================================" << endl;
 		cout << endl << "El problema no té solució" << endl;
 	}
 	auto t2 = Clock::now();
@@ -39,9 +41,27 @@ void opcio1(char* argv[]) {
 }
 void opcio2(char* argv[]) {
 	string origen(argv[2]), desti(argv[3]);
-	float perillMax = stof(argv[4]);
-	int distMax = stoi(argv[5]);
-	string filename(argv[6]);
+	int distMax = stoi(argv[4]);
+	string filename(argv[5]);
+	GrafEtiquetatVMap graf(filename.c_str(), false);
+	solucio sIni(&graf, distMax, graf.getNumeroVertex(desti), graf.getNumeroVertex(origen));
+	solucionarOptim algBack;
+	auto t1 = Clock::now();
+	double segons;
+	bool teSolucio = algBack.solucionar(sIni);
+	if (teSolucio) {
+		solucio sol = algBack.obtenirSolucio();
+		cout << "Cerquem un cam´ı amb probabilitat atemptat global m´es baixa" << endl << "=====================================================================" << endl;
+		sol.mostrar();
+	}
+	else {
+		cout << "Cerquem un cam´ı amb probabilitat atemptat global m´es baixa" << endl << "=====================================================================" << endl;
+		cout << endl << "El problema no té solució" << endl;
+	}
+	auto t2 = Clock::now();
+	chrono::duration<double> time_span = std::chrono::duration_cast< std::chrono::duration<double> >(t2 - t1);
+	segons = time_span.count();
+	cout << "temps de càlcul: " << segons << endl;
 }
 
 void opcio3(char* argv[]) {
