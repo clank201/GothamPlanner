@@ -2,9 +2,8 @@
 #include <string>
 #include <iostream>
 
-// Pre: cert
-// Post: diu si hi ha aresta de v1 a v2
-bool GrafEtiquetatVMap::ExisteixAresta(int v1, int v2) const {
+
+bool GrafEtiquetatVMap::ExisteixAresta(int v1, int v2) const{
 	if (!esValid(v1) || !esValid(v2)) return false;
 	else return (_arestes[v1].count(v2) == 1);
 }

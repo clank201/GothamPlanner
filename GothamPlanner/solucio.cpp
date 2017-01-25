@@ -7,7 +7,7 @@ solucio::solucio() {
 	distMax = 0;
 	perillMax = 0;
 	objectiu = 0;
-	perillAcum = 0;
+	perillAcum = 1;
 }
 
 solucio::solucio(GrafEtiquetatVMap* graf, int d, int o, int origen,double p) {

@@ -1,15 +1,15 @@
 #pragma once
 #include "solucio.h"
 
-class solucionarOptim {
+class solucionarOptim
+	/** \brief classe solucionador per al segon backtracking
+	*/
+{
 public:
-	bool solucionar(const solucio &inicial);
-	solucio obtenirSolucio() const;
+	solucio solucionar(const solucio &inicial);	  ///< @pre -- @post retorna la millor solucio al problema
 private:
-	void trobarUnaSolucio();
+	void trobarMillor(solucio & actual);	 ///< @pre -- @post busca una millor solucio
 	// inv: no encertat o encertat ^ sol completada
-	bool encertat;
 	solucio sol;
 	solucio optima;
-	bool buida;
 };
