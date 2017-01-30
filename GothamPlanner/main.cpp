@@ -3,7 +3,6 @@
 #include <chrono>
 #include <iostream>
 #include "GrafEtiquetatVMap.h"
-#include "solucionarMillor.h"
 #include "solucio.h"
 #include "solucionarSenzill.h"
 #include "solucionarOptim.h"

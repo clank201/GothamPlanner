@@ -6,8 +6,9 @@
 using namespace std;
 
 struct etiqueta {
-	int dist = -1;
-	float perill = -1;
+	etiqueta() : dist(-1), perill(-1) {}
+	int dist;
+	float perill;
 };
 
 const int MIDA_DEFECTE = 1000;
